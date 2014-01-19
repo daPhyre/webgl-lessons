@@ -160,6 +160,11 @@
   var texture;
   function initTexture() {
     texture = gl.createTexture();
+    // Setup a single pixel texture to use while we wait for the image to load.
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                  new Uint8Array([0, 0, 255, 255]));
+    // Load image asynchronously.
     texture.image = new Image();
     texture.image.onload = function() {
       handleLoadedTexture(texture)
@@ -328,6 +333,7 @@
   function tick() {
     animate();
     drawScene();
+    requestAnimationFrame(tick);
   }
 
 
@@ -339,7 +345,7 @@
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    setInterval(tick, 15);
+    tick();
   }
 
 

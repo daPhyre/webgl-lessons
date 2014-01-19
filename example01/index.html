@@ -228,6 +228,7 @@
     }
     document.getElementById("centerOffsetYOutput").value = centerOffsetY;
 
+    requestAnimationFrame(drawScene);
   }
 
 
@@ -248,7 +249,7 @@
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-    setInterval(drawScene, 15);
+    drawScene();
   }
 
 
