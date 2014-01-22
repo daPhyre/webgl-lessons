@@ -193,6 +193,11 @@
 
     function initTextures() {
         earthTexture = { id: gl.createTexture() };
+        // Setup a single pixel texture to use while we wait for the image to load.
+        gl.bindTexture(gl.TEXTURE_2D, earthTexture.id);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                      new Uint8Array([0, 0, 255, 255]));
+        // Load image asynchronously.
         earthTexture.image = new Image();
         earthTexture.image.onload = function () {
             handleLoadedTexture(earthTexture)
@@ -200,6 +205,11 @@
         earthTexture.image.src = "earth.jpg";
 
         galvanizedTexture = { id: gl.createTexture() };
+        // Setup a single pixel texture to use while we wait for the image to load.
+        gl.bindTexture(gl.TEXTURE_2D, galvanizedTexture.id);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                      new Uint8Array([0, 0, 255, 255]));
+        // Load image asynchronously.
         galvanizedTexture.image = new Image();
         galvanizedTexture.image.onload = function () {
             handleLoadedTexture(galvanizedTexture)

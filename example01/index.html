@@ -212,7 +212,7 @@
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-    gl.deleteBuffer(plotPositionBuffer)
+    gl.deleteBuffer(plotPositionBuffer.id);
 
     zoom *= 1.02;
     document.getElementById("zoomOutput").value = zoom;

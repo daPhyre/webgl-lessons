@@ -196,6 +196,11 @@
 
     function initTextures() {
         earthColorMapTexture = { id: gl.createTexture() };
+        // Setup a single pixel texture to use while we wait for the image to load.
+        gl.bindTexture(gl.TEXTURE_2D, earthColorMapTexture.id);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                      new Uint8Array([0, 0, 255, 255]));
+        // Load image asynchronously.
         earthColorMapTexture.image = new Image();
         earthColorMapTexture.image.onload = function () {
             handleLoadedTexture(earthColorMapTexture)
@@ -203,6 +208,11 @@
         earthColorMapTexture.image.src = "earth.jpg";
 
         earthSpecularMapTexture = { id: gl.createTexture() };
+        // Setup a single pixel texture to use while we wait for the image to load.
+        gl.bindTexture(gl.TEXTURE_2D, earthSpecularMapTexture.id);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                      new Uint8Array([0, 0, 255, 255]));
+        // Load image asynchronously.
         earthSpecularMapTexture.image = new Image();
         earthSpecularMapTexture.image.onload = function () {
             handleLoadedTexture(earthSpecularMapTexture)

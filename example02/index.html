@@ -338,7 +338,7 @@
     setMatrixUniforms();
     gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
-    gl.deleteBuffer(positionBuffer);
+    gl.deleteBuffer(positionBuffer.id);
   }
 
 

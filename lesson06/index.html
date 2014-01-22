@@ -146,6 +146,11 @@
 
         for (var i=0; i < 3; i++) {
             var texture = { id: gl.createTexture() };
+            // Setup a single pixel texture to use while we wait for the image to load.
+            gl.bindTexture(gl.TEXTURE_2D, texture.id);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE,
+                          new Uint8Array([0, 0, 255, 255]));
+            // Load image asynchronously.
             texture.image = crateImage;
             crateTextures.push(texture);
         }
